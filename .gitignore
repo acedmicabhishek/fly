@@ -1,0 +1,42 @@
+# Android
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+*.apk
+*.aab
+
+# iOS / Xcode
+ios/*.xcworkspace
+ios/Pods/
+ios/DerivedData/
+*.xcuserstate
+xcuserdata/
+
+# Kotlin desktop
+desktop/build/
+desktop/.gradle/
+desktop/gradle/wrapper/gradle-wrapper.jar
+
+# C++ desktop
+desktop-cpp/build/
+desktop-cpp/subprojects/*/
+
+# Gradle caches
+.gradle/
+**/configuration-cache/
+**/build-cache/
+**/buildOutputCleanup/
+
+# macOS
+.DS_Store
+
+# IDE
+*.iml
+.idea/
+
+# Compiled / generated
+*.o
+*.a
+*.so
+compile_commands.json

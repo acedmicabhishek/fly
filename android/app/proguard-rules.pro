@@ -1,0 +1,3 @@
+-keep class org.json.** { *; }
+-keepattributes SourceFile,LineNumberTable
+-renamesourcefileattribute SourceFile

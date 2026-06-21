@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Fly
+Comment=Local network file and text transfer
+Exec=fly
+Icon=fly
+Terminal=false
+Type=Application
+Categories=Network;FileTransfer;
+Keywords=transfer;file;network;send;receive;
+StartupNotify=true

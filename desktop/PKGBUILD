@@ -1,0 +1,42 @@
+# Maintainer: acedmicabhishek
+pkgname=fly
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="Local network file and text transfer between devices"
+arch=('x86_64')
+url="https://github.com/acedmicabhishek/fly"
+license=('MIT')
+depends=()
+makedepends=('jdk17-openjdk')
+source=("$pkgname-$pkgver.tar.gz::https://github.com/acedmicabhishek/fly/archive/v$pkgver.tar.gz")
+sha256sums=('SKIP')
+
+prepare() {
+    cd "$srcdir/$pkgname-$pkgver/desktop"
+    chmod +x gradlew
+}
+
+build() {
+    cd "$srcdir/$pkgname-$pkgver/desktop"
+    export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
+    ./gradlew packageAppImage --no-daemon
+}
+
+package() {
+    cd "$srcdir/$pkgname-$pkgver/desktop"
+    local appdir="build/compose/binaries/main/app/fly"
+
+    install -d "$pkgdir/usr/share/$pkgname"
+    cp -r "$appdir/"* "$pkgdir/usr/share/$pkgname/"
+
+    install -Dm755 /dev/stdin "$pkgdir/usr/bin/$pkgname" <<'EOF'
+#!/bin/sh
+exec /usr/share/fly/bin/fly "$@"
+EOF
+
+    install -Dm644 src/main/resources/icon.png \
+        "$pkgdir/usr/share/pixmaps/$pkgname.png"
+
+    install -Dm644 fly.desktop \
+        "$pkgdir/usr/share/applications/$pkgname.desktop"
+}
